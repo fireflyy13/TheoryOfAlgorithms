@@ -13,10 +13,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner consoleScanner = new Scanner(System.in);
-        System.out.println("Generate array elements - 1");
-        System.out.println("Enter the array by yourself - 2");
-        System.out.println("Read from file - 3 ");
-        System.out.print("Input how you want entered array ");
+        System.out.println("To generate array elements - print 1");
+        System.out.println("To enter the array by yourself - print 2");
+        System.out.println("To read from file - print 3 ");
+        System.out.print("Enter a desired type of input: ");
         String choice = consoleScanner.nextLine();
         System.out.println("_______________________");
 
@@ -35,7 +35,7 @@ public class Main {
             case "1" -> new Randomizer(getSize());
             case "2" -> new ConsoleProvider(getSize());
             case "3" -> new FileProvider(getFilePath());
-            default -> throw new MenuException("You entered wrong menu option");
+            default -> throw new MenuException("You have entered a wrong menu option!");
         };
     }
 
@@ -45,11 +45,11 @@ public class Main {
 
     private static float getValueToCompare() throws MenuException {
         Scanner consoleScanner = new Scanner(System.in);
-        System.out.print("Enter a value to compare ");
+        System.out.print("Enter a value to compare: ");
         try {
             return Float.parseFloat(consoleScanner.nextLine());
         } catch (NumberFormatException e) {
-            throw new MenuException("You entered wrong value");
+            throw new MenuException("You have entered a wrong value!");
         }
     }
 
@@ -60,7 +60,7 @@ public class Main {
                 amount++;
             }
         }
-        System.out.println("The amount of elements array bigger than entered number is " + amount);
+        System.out.println("The amount of elements array greater than entered number is " + amount);
     }
 
     private static int getSize() throws MenuException {
@@ -71,7 +71,7 @@ public class Main {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException e) {
-            throw new MenuException("You entered wrong elements value");
+            throw new MenuException("You have entered a wrong element value!");
         }
 
     }
