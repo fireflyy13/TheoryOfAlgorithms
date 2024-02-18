@@ -74,10 +74,10 @@ public class Main {
     private static int getSize() throws MenuException {
         Scanner consoleScanner = new Scanner(System.in);
         System.out.print("Input the amount of elements in array: ");
-        String amount = consoleScanner.nextLine();
+        String size = consoleScanner.nextLine();
 
         try {
-            return Integer.parseInt(amount);
+            return Integer.parseInt(size);
         } catch (NumberFormatException e) {
             throw new MenuException("The value must be an integer type!");
         }
