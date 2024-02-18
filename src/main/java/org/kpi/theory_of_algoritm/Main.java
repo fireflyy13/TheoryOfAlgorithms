@@ -1,5 +1,5 @@
+//Including all the side program files
 package org.kpi.theory_of_algoritm;
-
 import org.kpi.theory_of_algoritm.ArrayProviders.ArrayProvider;
 import org.kpi.theory_of_algoritm.ArrayProviders.ConsoleProvider;
 import org.kpi.theory_of_algoritm.ArrayProviders.FileProvider;
@@ -13,10 +13,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner consoleScanner = new Scanner(System.in);
+
+        //Developing the interface for our program to make it look better
         String str = "Лабораторна робота 1, Бригада №10";
         System.out.printf("%1$" + (10 + str.length()) + "s", str);
         System.out.println("\n__________________________________________________");
         System.out.printf("%1$" + 30 + "s", "START");
+
+        //Start of the program
         System.out.println("\nThere are 3 options for you to present an array. You can select only one!");
         System.out.println("To generate array elements - print 1");
         System.out.println("To enter the array by yourself - print 2");
@@ -26,6 +30,10 @@ public class Main {
         System.out.println("__________________________________________________");
 
         try {
+
+            /*The algorithm of getting an array based on a data from the input
+            and all the processes occurred in side files after choice was made
+             */
             ArrayProvider provider = getArrayProvider(choice);
             List<Float> array = provider.getArray();
             outputArray(array);
@@ -37,6 +45,8 @@ public class Main {
 
     private static ArrayProvider getArrayProvider(String choice) throws MenuException {
         return switch (choice) {
+
+            //Logical response is here: when the user prints a value, we call a class
             case "1" -> new Randomizer(getSize());
             case "2" -> new ConsoleProvider(getSize());
             case "3" -> new FileProvider(getFilePath());
@@ -45,11 +55,18 @@ public class Main {
     }
 
     private static void outputArray(List<Float> array) {
+
+        //Output the array
         System.out.println("Your array: ");
         System.out.println(array);
     }
 
     private static float getValueToCompare() throws MenuException {
+
+        /*
+        Here we ask our user to give us a certain value to compare
+        each element with
+         */
         Scanner consoleScanner = new Scanner(System.in);
         System.out.print("Enter a value to compare: ");
         try {
@@ -63,9 +80,13 @@ public class Main {
         int amount = 0;
         for (Float aFloat : array) {
             if (aFloat > valueToCompare) {
+
+                //Iterating through each element and doing simple tests
                 amount++;
             }
         }
+
+        //Showing final results
         System.out.println("The amount of elements in array greater than the entered number is " + amount + "!");
         System.out.printf("%1$" + 30 + "s", "THE END");
 
@@ -73,6 +94,8 @@ public class Main {
 
     private static int getSize() throws MenuException {
         Scanner consoleScanner = new Scanner(System.in);
+
+        //Here we ask our user to tell us what is the amount of elements
         System.out.print("Input the amount of elements in array: ");
         String size = consoleScanner.nextLine();
 
@@ -86,6 +109,8 @@ public class Main {
 
     private static String getFilePath() {
         Scanner consoleScanner = new Scanner(System.in);
+
+        //Asking to tell the program what is the path to file containing array to work with
         System.out.print("Input file path (for example C:\\Users\\Anna\\Desktop\\Array.txt): ");
         return consoleScanner.nextLine();
     }

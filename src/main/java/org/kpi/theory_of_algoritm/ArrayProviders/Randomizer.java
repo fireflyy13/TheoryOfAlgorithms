@@ -18,7 +18,8 @@ public class Randomizer implements ArrayProvider {
         ArrayList<Float> list = new ArrayList<>();
         Random rand = new Random();
 
-        for (int i=0; i<size;i++){
+        //Adding random values to our array
+        for (int i = 0; i < size; i++){
             list.add(rand.nextFloat(10));
         }
 

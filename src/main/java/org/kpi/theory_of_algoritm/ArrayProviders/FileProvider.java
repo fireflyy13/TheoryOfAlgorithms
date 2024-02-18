@@ -23,21 +23,27 @@ public class FileProvider implements ArrayProvider {
     public List<Float> getArray() throws ArrayProviderException {
         try (BufferedReader reader = new BufferedReader(new FileReader(this.filePath))) {
             String line = reader.readLine();
+
+            //Throwing an error if the file is blank
             if (line == null) {
-                throw new ArrayProviderException("Failed to read the file. " +
-                        "Check if path is correct and format is appropriate!");
+                throw new ArrayProviderException("Failed to read the file. Check for " +
+                        "the content. ");
             }
 
             ArrayList<Float> list = getFloats(line.split(" "));
 
+            /*
+            Throwing an error if the file isn't blank but its content
+            doesn't meet the requirements
+             */
             if (reader.readLine() != null) {
                 throw new ArrayProviderException("Failed to read the file. " +
-                        "Check if path is correct and format is appropriate!");
+                        "Check if the content is appropriate.");
             }
 
             return list;
         } catch (FileNotFoundException e) {
-            throw new ArrayProviderException("Can't open the file. Check if entered path exists.");
+            throw new ArrayProviderException("Can't open the file. Check if the entered path exists.");
         } catch (IOException e) {
             throw new ArrayProviderException("Problem with reading file!");
         }
@@ -49,6 +55,8 @@ public class FileProvider implements ArrayProvider {
             try {
                 list.add(Float.parseFloat(string));
             } catch (NumberFormatException e) {
+
+                //Throwing an error in case the elements aren't numbers
                 throw new ArrayProviderException("Can't recognize the numbers! " +
                         "Check if values in the file meet all requirements.");
             }
