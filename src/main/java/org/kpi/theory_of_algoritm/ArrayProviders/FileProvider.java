@@ -24,20 +24,20 @@ public class FileProvider implements ArrayProvider {
         try (BufferedReader reader = new BufferedReader(new FileReader(this.filePath))) {
             String line = reader.readLine();
             if (line == null) {
-                throw new ArrayProviderException("Problem with reading file");
+                throw new ArrayProviderException("Failed to read file. Check the entered adress.");
             }
 
             ArrayList<Float> list = getFloats(line.split(" "));
 
             if (reader.readLine() != null) {
-                throw new ArrayProviderException("Problem with reading file");
+                throw new ArrayProviderException("Failed to read file. Try again.");
             }
 
             return list;
         } catch (FileNotFoundException e) {
-            throw new ArrayProviderException("Can't open file");
+            throw new ArrayProviderException("Can't open file.");
         } catch (IOException e) {
-            throw new ArrayProviderException("Problem with reading file");
+            throw new ArrayProviderException("Problem with reading file!");
         }
     }
 
@@ -47,7 +47,7 @@ public class FileProvider implements ArrayProvider {
             try {
                 list.add(Float.parseFloat(string));
             } catch (NumberFormatException e) {
-                throw new ArrayProviderException("You entered wrong value");
+                throw new ArrayProviderException("Entered value doesn't match the requirements. Only numbers are allowed!");
             }
         }
         return list;
