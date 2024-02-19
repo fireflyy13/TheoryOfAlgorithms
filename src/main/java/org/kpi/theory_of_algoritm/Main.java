@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
         Scanner consoleScanner = new Scanner(System.in);
 
@@ -77,6 +78,7 @@ public class Main {
     }
 
     private static void countBiggerThen(List<Float> array, float valueToCompare) {
+        long start = System.nanoTime();
         int amount = 0;
         for (Float aFloat : array) {
             if (aFloat > valueToCompare) {
@@ -85,7 +87,9 @@ public class Main {
                 amount++;
             }
         }
-
+        long finish = System.nanoTime();
+        long timeElapsed = finish - start;
+        System.out.println("Time elapsed: " + timeElapsed);
         //Showing final results
         System.out.println("The amount of elements in array greater than the entered number is " + amount + "!");
         System.out.printf("%1$" + 30 + "s", "THE END");
@@ -114,6 +118,7 @@ public class Main {
         System.out.print("Input file path (for example C:\\Users\\Anna\\Desktop\\Array.txt): ");
         return consoleScanner.nextLine();
     }
+
 
 }
 
