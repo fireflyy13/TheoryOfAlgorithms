@@ -118,9 +118,7 @@ public class Main {
         Scanner consoleScanner = new Scanner(System.in);
 
         //Asking to tell the program what is the path to file containing array to work with
-        System.out.print("Input the file path(you can choose the existing ArrayWriter.txt or "
-                + "\nor ArrayReader.txt and you can also " +
-                "create your own file): ");
+        System.out.print("Input the full file path: ");
         return consoleScanner.nextLine();
     }
 
