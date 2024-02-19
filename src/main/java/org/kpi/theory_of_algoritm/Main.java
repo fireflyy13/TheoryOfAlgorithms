@@ -48,7 +48,7 @@ public class Main {
         return switch (choice) {
 
             //Logical response is here: when the user prints a value, we call a class
-            case "1" -> new Randomizer(getSize());
+            case "1" -> new Randomizer(getSize(), getFilePath());
             case "2" -> new ConsoleProvider(getSize());
             case "3" -> new FileProvider(getFilePath());
             default -> throw new MenuException("You have entered the wrong menu option! Choose either 1, 2 or 3.");
@@ -58,8 +58,10 @@ public class Main {
     private static void outputArray(List<Float> array) {
 
         //Output the array
+        System.out.println("__________________________________________________");
         System.out.println("Your array: ");
         System.out.println(array);
+        System.out.println("__________________________________________________");
     }
 
     private static float getValueToCompare() throws MenuException {
@@ -91,6 +93,7 @@ public class Main {
         long timeElapsed = finish - start;
         System.out.println("Time elapsed: " + timeElapsed);
         //Showing final results
+        System.out.println("__________________________________________________");
         System.out.println("The amount of elements in array greater than the entered number is " + amount + "!");
         System.out.printf("%1$" + 30 + "s", "THE END");
 
@@ -115,7 +118,9 @@ public class Main {
         Scanner consoleScanner = new Scanner(System.in);
 
         //Asking to tell the program what is the path to file containing array to work with
-        System.out.print("Input file path (for example C:\\Users\\Anna\\Desktop\\Array.txt): ");
+        System.out.print("Input the file path(you can choose the existing ArrayWriter.txt or "
+                + "\nor ArrayReader.txt and you can also " +
+                "create your own file): ");
         return consoleScanner.nextLine();
     }
 
