@@ -107,12 +107,17 @@ public class Main {
         String size = consoleScanner.nextLine();
 
         try {
-            return Integer.parseInt(size);
+            if(Integer.parseInt(size) > 0){
+                return Integer.parseInt(size);
+            } else {
+                throw new MenuException("The value must be a positive integer type!");
+            }
         } catch (NumberFormatException e) {
             throw new MenuException("The value must be an integer type!");
         }
 
     }
+
 
     private static String getFilePath() {
         Scanner consoleScanner = new Scanner(System.in);
